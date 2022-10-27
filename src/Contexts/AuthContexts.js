@@ -28,6 +28,7 @@ const AuthContexts = ({children}) => {
 
     // Email And Password Login system...
     const emailSignIn = (email, password) => {
+        setLoader(true)
         return signInWithEmailAndPassword(auth, email, password)
     }
 

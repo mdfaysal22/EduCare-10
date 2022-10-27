@@ -10,6 +10,7 @@ import Login from "../Components/Pages/Login/Login";
 import Profile from "../Components/Pages/Profile/Profile";
 import Signup from "../Components/Pages/Signup/Signup";
 import Main from "../Layout/Main";
+import PrivateRoute from "./PrivateRoute";
 
 export const router = createBrowserRouter([
     {
@@ -37,7 +38,7 @@ export const router = createBrowserRouter([
             {
                 path:'/checkout/:id',
                 loader: ({params}) => fetch(`https://assignment-10-server-mdfaysal22.vercel.app/courses/${params.id}`),
-                element:<Checkout></Checkout>
+                element:<PrivateRoute><Checkout></Checkout></PrivateRoute>
             },
             {
                 path:'/faq',
@@ -57,7 +58,7 @@ export const router = createBrowserRouter([
             },
             {
                 path:'/profile',
-                element:<Profile></Profile>
+                element:<PrivateRoute><Profile></Profile></PrivateRoute>
             },
             {
                 path:'*',

@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import {  FaGithub,  FaGoogle } from 'react-icons/fa'
 import { useContext } from "react";
 import { authUser } from "../../../Contexts/AuthContexts";
@@ -10,6 +10,9 @@ import { useState } from "react";
 const Login = () => {
   const {emailSignIn,googleSignUp,passwordReset, githubSignUp} = useContext(authUser)
   const [email, setEmail] = useState("");
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
   const errorHandler = (err) => {
     swal({
       title: "Your Email Or Password is Wrong",
@@ -40,7 +43,7 @@ const Login = () => {
     emailSignIn(email, password)
     .then(result => {
       const signedUser = result.user;
-      console.log(signedUser);
+      navigate(from, {replace:true})
     })
     .catch(err => {
       const errMessage = err.message;

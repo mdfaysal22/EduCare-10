@@ -1,23 +1,22 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FaBars, FaMoon } from 'react-icons/fa';
 import { useContext } from 'react';
 import { authUser } from '../../../Contexts/AuthContexts';
 import userImg from './../../../Assets/user.png';
 import ReactTooltip from 'react-tooltip';
 const Header = () => {
-  const {user, signOutSystem} = useContext(authUser);
-  console.log(user);
+  const {user,loader, signOutSystem} = useContext(authUser);
+  const navigate = useNavigate();
 
   const handleSignOut = () => {
     signOutSystem()
     .then(() => {})
     .catch(() => {})
+    navigate('/')
   }
 
-  const handleUserNameTooltip = () => {
-
-  }
+  
     return (
         <div className="navbar bg-slate-500">
   <div className="flex-1">
@@ -53,9 +52,10 @@ const Header = () => {
     </div>
     </div>
     {
+      loader ? <h1>Loader...</h1> : 
       user?.uid ? <div className="dropdown dropdown-end">
       <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-        <div onMouseEnter={handleUserNameTooltip} className=" w-10 rounded-full">
+        <div className=" w-10 rounded-full">
           <img data-tip={user?.displayName ? user.displayName : "User Name"} className='tooltip tooltip-bottom' src={user.photoURL ? user.photoURL : userImg }/>
           <ReactTooltip />
         </div>
@@ -74,7 +74,6 @@ const Header = () => {
       <Link to={'/signup'} className="btn btn-sm">Sign-Up</Link>
     </div>
     }
-    
     
       <div className='divider divider-horizontal'></div>
     <div className='mr-4'>
