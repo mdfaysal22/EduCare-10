@@ -5,6 +5,7 @@ import { useContext } from 'react';
 import { authUser } from '../../../Contexts/AuthContexts';
 import userImg from './../../../Assets/user.png';
 import ReactTooltip from 'react-tooltip';
+import ToggleDarkMode from '../ToggleDarkMode/ToggleDarkMode';
 const Header = () => {
   const {user,loader, signOutSystem} = useContext(authUser);
   const navigate = useNavigate();
@@ -77,7 +78,7 @@ const Header = () => {
     
       <div className='divider divider-horizontal'></div>
     <div className='mr-4'>
-      <button className='btn btn-circle'><FaMoon></FaMoon></button>
+      <ToggleDarkMode></ToggleDarkMode>
     </div>
   </div>
 </div>
