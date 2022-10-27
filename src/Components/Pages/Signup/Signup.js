@@ -6,17 +6,18 @@ import { Link } from "react-router-dom";
 import { authUser } from "../../../Contexts/AuthContexts";
 
 const Signup = () => {
-    const {emailSignup,updateUser, googleSignUp, githubSignUp, user} = useContext(authUser)
+    const {emailSignup,updateUser, googleSignUp, githubSignUp} = useContext(authUser)
     const handleEmailSignUp = (event) => {
         event.preventDefault();
         const form = event.target;
         const name = form.name.value;
         const email = form.email.value;
         const password = form.password.value;
+        const photourl = form.photo.value;
         emailSignup(email, password) 
         .then(result  => {
             const currentUser = result.user;
-            updateUser(name)
+            updateUser(name, photourl)
         .then(()=>{})
         .catch(() => {})
         })
@@ -86,6 +87,17 @@ const Signup = () => {
                   type="password"
                   placeholder="password"
                   name="password"
+                  className="input input-bordered"
+                />
+              </div>
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Photo url</span>
+                </label>
+                <input
+                  type="text"
+                  placeholder="Photo url"
+                  name="photo"
                   className="input input-bordered"
                 />
               </div>

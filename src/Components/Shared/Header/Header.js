@@ -4,7 +4,7 @@ import { FaBars, FaMoon } from 'react-icons/fa';
 import { useContext } from 'react';
 import { authUser } from '../../../Contexts/AuthContexts';
 import userImg from './../../../Assets/user.png';
-
+import ReactTooltip from 'react-tooltip';
 const Header = () => {
   const {user, signOutSystem} = useContext(authUser);
   console.log(user);
@@ -13,6 +13,10 @@ const Header = () => {
     signOutSystem()
     .then(() => {})
     .catch(() => {})
+  }
+
+  const handleUserNameTooltip = () => {
+
   }
     return (
         <div className="navbar bg-slate-500">
@@ -51,8 +55,9 @@ const Header = () => {
     {
       user?.uid ? <div className="dropdown dropdown-end">
       <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-        <div className="w-10 rounded-full">
-          <img src={user.photoURL ? user.photoURL : userImg }/>
+        <div onMouseEnter={handleUserNameTooltip} className=" w-10 rounded-full">
+          <img data-tip={user?.displayName ? user.displayName : "User Name"} className='tooltip tooltip-bottom' src={user.photoURL ? user.photoURL : userImg }/>
+          <ReactTooltip />
         </div>
       </label>
       <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
