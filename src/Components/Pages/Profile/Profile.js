@@ -5,7 +5,7 @@ import { authUser } from "../../../Contexts/AuthContexts";
 import userImg from './../../../Assets/user.png'
 
 const Profile = () => {
-  const { user, loader } = useContext(authUser);
+  const { user } = useContext(authUser);
 
   return (
     <div>
