@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { FaBars } from "react-icons/fa";
 import { useContext } from "react";
 import { authUser } from "../../../Contexts/AuthContexts";
@@ -27,17 +27,17 @@ const Header = () => {
 
       <div className="hidden md:block mr-6">
         <ul className="flex items-center gap-3">
-          <li>
-            <Link to={"/home"}>Home</Link>
+          <li className="hover:text-yellow-400">
+            <NavLink className={({isActive}) => isActive ? "text-yellow-500" : undefined} to={"/home"}>Home</NavLink>
           </li>
-          <li>
-            <Link to={"/courses"}>Courses</Link>
+          <li className="hover:text-yellow-400">
+            <NavLink className={({isActive}) => isActive ? "text-yellow-500" : undefined} to={"/courses"}>Courses</NavLink>
           </li>
-          <li>
-            <Link to={"/faq"}>FAQ</Link>
+          <li className="hover:text-yellow-400">
+            <NavLink className={({isActive}) => isActive ? "text-yellow-500" : undefined} to={"/faq"}>FAQ</NavLink>
           </li>
-          <li>
-            <Link to={"/blog"}>Blog</Link>
+          <li className="hover:text-yellow-400">
+            <NavLink className={({isActive}) => isActive ? "text-yellow-500" : undefined} to={"/blog"}>Blog</NavLink>
           </li>
         </ul>
       </div>
