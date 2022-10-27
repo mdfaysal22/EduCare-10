@@ -9,10 +9,10 @@ const Checkout = () => {
   const { user } = useContext(authUser);
   const { name, id, price } = data;
   return (
-    <div className="hero h-screen">
-      <div className="w-3/5 mx-auto py-10 border-2 border-slate-600 shadow-md">
+    <div className="lg:hero lg:h-screen">
+      <div className="lg:w-3/5 mx-auto py-10 border-2 border-slate-600 shadow-md">
         <h2 className="text-3xl text-center">{name}</h2>
-        <div className="form-control my-2 mx-auto w-1/2">
+        <div className="form-control mx-5 my-2 lg:mx-auto lg:w-1/2">
           <label htmlFor="bankAccount">Full Name</label>
           <input
             readOnly
@@ -22,7 +22,7 @@ const Checkout = () => {
             value={user?.displayName}
           />
         </div>
-        <div className="form-control my-2 mx-auto w-1/2">
+        <div className="form-control mx-5 my-2 lg:mx-auto lg:w-1/2">
           <label htmlFor="bankAccount">Email</label>
           <input
             readOnly
@@ -32,7 +32,7 @@ const Checkout = () => {
             value={user?.email ? user?.email : "Github User"}
           />
         </div>
-        <div className="form-control my-2 mx-auto w-1/2">
+        <div className="form-control mx-5 my-2 lg:mx-auto lg:w-1/2">
           <label htmlFor="bankAccount">Bank Account Number</label>
           <input
             className="border-2 p-2 rounded-md border-slate-600"
@@ -41,7 +41,7 @@ const Checkout = () => {
             placeholder="Account Number"
           />
         </div>
-        <div className="form-control my-2 mx-auto w-1/2">
+        <div className="form-control mx-5 my-2 lg:mx-auto lg:w-1/2">
           <label htmlFor="bankAccount">Course Price</label>
           <input
             readOnly

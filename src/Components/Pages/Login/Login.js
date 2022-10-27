@@ -56,11 +56,11 @@ const Login = () => {
     const email = e.target.value;
     setEmail(email)
   }
-  console.log(email)
   const handleGoogleSignIn = () => {
     googleSignUp()
     .then(result => {
         const currentUser = result.user;
+        navigate(from, {replace:true})
     })
     .catch(err => {
         const errMessage = err.message;
@@ -70,6 +70,7 @@ const handleGitthubSignIn = () => {
     githubSignUp()
     .then(result => {
         const currentUser = result.user;
+        navigate(from, {replace:true})
     })
     .catch(err => {
         const errMessage = err.message;
