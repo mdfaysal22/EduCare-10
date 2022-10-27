@@ -66,7 +66,7 @@ const Signup = () => {
           <div className="text-center mt-4">
             <h1 className="text-5xl font-bold">Sign Up</h1>
           </div>
-          <div className="flex p-10 flex-row justify-center items-center">
+          <div className="flex p-10 flex-col md:flex-row justify-center items-center">
             <div>
               <div className="form-control">
                 <label className="label">
@@ -116,7 +116,7 @@ const Signup = () => {
                 <button className="btn btn-primary">Signup</button>
               </div>
             </div>
-            <div className="ml-6 text-center flex flex-col">
+            <div className="ml-6 text-center mt-2 md:mt-0 flex flex-col">
               <small className="text-center">Sign Up Using </small>
               <div className="flex my-4 justify-center gap-6">
                 <div className="form-control">
