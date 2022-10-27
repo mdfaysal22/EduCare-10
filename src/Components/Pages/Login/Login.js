@@ -1,12 +1,37 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { FaGitAlt, FaGithub, FaGithubAlt, FaGoogle } from 'react-icons/fa'
+import {  FaGithub,  FaGoogle } from 'react-icons/fa'
 import { useContext } from "react";
 import { authUser } from "../../../Contexts/AuthContexts";
+import swal from 'sweetalert';
+import { useState } from "react";
+
 
 const Login = () => {
-  const {emailSignIn,googleSignUp, githubSignUp} = useContext(authUser)
+  const {emailSignIn,googleSignUp,passwordReset, githubSignUp} = useContext(authUser)
+  const [email, setEmail] = useState("");
+  const errorHandler = (err) => {
+    swal({
+      title: "Your Email Or Password is Wrong",
+      text: err,
+      icon: "error",
+      button: "Reset Password",
+    });
+  }
+  const SendPasswordResetHandler = (email) =>{
+    passwordReset(email)
+    .then(() => {
+      swal({
+        title: "Check Email",
+        icon: "success",
+        button: "Ok",
+      });
+    })
+    .catch(() => {
 
+    })
+  }
+  
   const handleEmailSignIn = (e) => {
     e.preventDefault()
     const form = e.target;
@@ -19,12 +44,16 @@ const Login = () => {
     })
     .catch(err => {
       const errMessage = err.message;
-      console.log(errMessage)
+      errorHandler(errMessage)
     })
+    
     form.reset()
   }
-
-
+  const handleSetEmail = (e) => {
+    const email = e.target.value;
+    setEmail(email)
+  }
+  console.log(email)
   const handleGoogleSignIn = () => {
     googleSignUp()
     .then(result => {
@@ -56,6 +85,7 @@ const handleGitthubSignIn = () => {
                 <span className="label-text">Email</span>
               </label>
               <input
+              onBlur={handleSetEmail}
                 type="email"
                 name="email"
                 placeholder="email"
@@ -73,9 +103,9 @@ const handleGitthubSignIn = () => {
                 className="input input-bordered"
               />
               <label className="label">
-                <Link href="#" className="label-text-alt link link-hover">
+                <button onClick={() => {SendPasswordResetHandler(email)}} href="#" className="label-text-alt link link-hover">
                   Forgot password?
-                </Link>
+                </button>
               </label>
             </div>
             <div className="form-control">
